@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { range } from '../../utils';
+
 import PoppingCircle from '../PoppingCircle';
 import UnstyledButton from '../UnstyledButton';
 
@@ -10,7 +12,7 @@ import Heart from './Heart';
 
 const PARTICLE_COLORS = ['#e53935', '#1e88e5', '#43a047', '#fdd835', '#fb8c00'];
 
-const LikeButton = ({ isLiked, numOfConfettiPieces = 1, size = 40 }) => {
+const LikeButton = ({ isLiked, numOfConfettiPieces = 12, size = 40 }) => {
   const heartSize = size * 0.6;
 
   const heart = <Heart width={heartSize} isToggled={isLiked} />;
