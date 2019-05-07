@@ -1,17 +1,18 @@
-import React from 'react'
-import { useSpring, interpolate, animated } from 'react-spring'
+import React from 'react';
+import { useSpring, interpolate, animated } from 'react-spring';
 
-import { random, sample } from '../../utils'
+import { random, sample } from '../../utils';
 
 const Particle = ({ children, startDistance, travelDistance }) => {
-  const angle = React.useRef(random(0, Math.PI * 2 * 100) / 100)
-  const delay = React.useRef(sample([0, 100, 200]))
+  // const angle = React.useRef(random(0, Math.PI * 2 * 100) / 100);
+  const angle = (315 * Math.PI) / 180;
+  const delay = React.useRef(sample([0, 100, 200]));
 
-  const startX = Math.cos(angle.current) * startDistance
-  const startY = Math.sin(angle.current) * startDistance
+  const startX = Math.cos(angle) * startDistance;
+  const startY = Math.sin(angle) * startDistance;
 
-  const endX = Math.cos(angle.current) * travelDistance
-  const endY = Math.sin(angle.current) * travelDistance
+  const endX = Math.cos(angle) * travelDistance;
+  const endY = Math.sin(angle) * travelDistance;
 
   const positionSpring = useSpring({
     x: endX,
@@ -23,7 +24,9 @@ const Particle = ({ children, startDistance, travelDistance }) => {
       tension: 120,
       friction: 30,
     },
-  })
+  });
+
+  console.log(angle, travelDistance);
 
   const opacitySpring = useSpring({
     opacity: 1,
@@ -33,21 +36,22 @@ const Particle = ({ children, startDistance, travelDistance }) => {
       tension: 140,
       friction: 20,
     },
-  })
+  });
 
   return (
     <animated.div
       style={{
-        ...opacitySpring,
-        transform: interpolate(
-          [positionSpring.x, positionSpring.y, positionSpring.scale],
-          (x, y, scale) => `translate(${x}px, ${y}px) scale(${scale}, ${scale})`
-        ),
+        transform: `translate(${endX}px, ${endY}px)`,
+        // ...opacitySpring,
+        // transform: interpolate(
+        //   [positionSpring.x, positionSpring.y, positionSpring.scale],
+        //   (x, y, scale) => `translate(${x}px, ${y}px) scale(${scale}, ${scale})`
+        // ),
       }}
     >
       {children}
     </animated.div>
-  )
-}
+  );
+};
 
-export default Particle
+export default Particle;
