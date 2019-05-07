@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { range } from '../../utils';
-
 import PoppingCircle from '../PoppingCircle';
 import UnstyledButton from '../UnstyledButton';
 
@@ -17,18 +15,18 @@ const LikeButton = ({ isLiked, numOfConfettiPieces = 1, size = 40 }) => {
 
   return (
     <Wrapper style={{ width: size, height: size }}>
+      <Foreground>
+        {/* Part I: Update ScaleIn to do the springy scale effect */}
+        {isLiked ? <ScaleIn>{heart}</ScaleIn> : heart}
+      </Foreground>
+
       <Background>
+        {/* Part II: Update the PoppingCircle */}
         {isLiked && <PoppingCircle size={size} />}
 
-        {isLiked &&
-          range(numOfConfettiPieces).map(i => (
-            <ConfettiPiece parentSize={size} key={i} />
-          ))}
+        {/* Part III: update ConfettiPiece, add several more: */}
+        <ConfettiPiece parentSize={size} angle={33} distance={10} />
       </Background>
-
-      <Foreground>
-        {isLiked ? <ScaleIn delay={175}>{heart}</ScaleIn> : heart}
-      </Foreground>
     </Wrapper>
   );
 };

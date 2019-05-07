@@ -1,20 +1,12 @@
+/**
+ * This component should be updated to use react-spring to pop the children
+ * in
+ */
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
 
-const ScaleIn = ({ delay, children }) => {
-  const props = useSpring({
-    transform: 'scale(1)',
-    from: {
-      transform: 'scale(0)',
-    },
-    config: {
-      tension: 200,
-      friction: 12,
-    },
-    delay,
-  });
-
-  return <animated.div style={props}>{children}</animated.div>;
+const ScaleIn = ({ children }) => {
+  return children;
 };
 
 export default ScaleIn;

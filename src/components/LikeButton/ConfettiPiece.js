@@ -11,42 +11,32 @@ const getRandomColor = () =>
 const getRandomSize = parentSize =>
   random(parentSize * 0.15, parentSize * 0.225);
 
-const ConfettiPiece = ({ parentSize }) => {
-  const color = React.useRef(getRandomColor());
-  const size = React.useRef(getRandomSize(parentSize));
-
-  const particleStartDistance = React.useRef(
-    random(parentSize * 0.375, parentSize * 0.5)
-  );
-
-  const particleTravelDistance = React.useRef(
-    particleStartDistance.current +
-      random(parentSize * 0.125, parentSize * 0.375)
-  );
+const ConfettiPiece = ({ parentSize, angle, distance }) => {
+  const size = parentSize * 0.1;
 
   return (
-    <Wrapper>
-      <Particle startDistance={0} travelDistance={50}>
-        <Shape
+    <CenteredWithinParent>
+      <Particle angle={angle} distance={distance}>
+        <Circle
           style={{
-            width: size.current,
-            height: size.current,
-            background: 'red',
+            width: size,
+            height: size,
+            background: '#e53935',
           }}
         />
       </Particle>
-    </Wrapper>
+    </CenteredWithinParent>
   );
 };
 
-const Wrapper = styled.div`
+const CenteredWithinParent = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
 
-const Shape = styled.div`
+const Circle = styled.div`
   border-radius: 50%;
 `;
 
