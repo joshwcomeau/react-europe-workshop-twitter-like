@@ -3,16 +3,16 @@ import { useSpring, interpolate, animated } from 'react-spring';
 
 import { random, sample } from '../../utils';
 
-const Particle = ({ children, startDistance, travelDistance }) => {
-  const angle = React.useRef(random(0, Math.PI * 2 * 100) / 100);
-  // const angle = (315 * Math.PI) / 180;
-  const delay = React.useRef(sample([0, 100, 200]));
+const Particle = ({ angle, startDistance, endDistance, children }) => {
+  // const angle = React.useRef(random(0, Math.PI * 2 * 100) / 100);
+  const angleInRads = (angle * Math.PI) / 180;
+  const delay = React.useRef(random(0, 450));
 
-  const startX = Math.cos(angle.current) * startDistance;
-  const startY = Math.sin(angle.current) * startDistance;
+  const startX = Math.cos(angleInRads) * startDistance;
+  const startY = Math.sin(angleInRads) * startDistance;
 
-  const endX = Math.cos(angle.current) * travelDistance;
-  const endY = Math.sin(angle.current) * travelDistance;
+  const endX = Math.cos(angleInRads) * endDistance;
+  const endY = Math.sin(angleInRads) * endDistance;
 
   const positionSpring = useSpring({
     x: endX,
@@ -39,12 +39,11 @@ const Particle = ({ children, startDistance, travelDistance }) => {
   return (
     <animated.div
       style={{
-        transform: `translate(${endX}px, ${endY}px)`,
-        // ...opacitySpring,
-        // transform: interpolate(
-        //   [positionSpring.x, positionSpring.y, positionSpring.scale],
-        //   (x, y, scale) => `translate(${x}px, ${y}px) scale(${scale}, ${scale})`
-        // ),
+        ...opacitySpring,
+        transform: interpolate(
+          [positionSpring.x, positionSpring.y, positionSpring.scale],
+          (x, y, scale) => `translate(${x}px, ${y}px) scale(${scale}, ${scale})`
+        ),
       }}
     >
       {children}
