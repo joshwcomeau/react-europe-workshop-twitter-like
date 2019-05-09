@@ -21,7 +21,7 @@ const LikeButton = ({ isLiked, numOfConfettiPieces = 12, size = 40 }) => {
     <Wrapper style={{ width: size, height: size }}>
       <Foreground>
         {/* Part I: Update ScaleIn to do the springy scale effect */}
-        {isLiked ? <ScaleIn>{heart}</ScaleIn> : heart}
+        {isLiked ? <ScaleIn delay={175}>{heart}</ScaleIn> : heart}
       </Foreground>
 
       <Background>
@@ -29,16 +29,15 @@ const LikeButton = ({ isLiked, numOfConfettiPieces = 12, size = 40 }) => {
         {isLiked && <PoppingCircle size={size} />}
 
         {/* Part III: update ConfettiPiece, add several more: */}
-        {isLiked && (
-          <>
+        {isLiked &&
+          range(numOfConfettiPieces).map(i => (
             <ConfettiPiece
+              key={i}
               parentSize={size}
-              angle={40}
-              distance={25}
-              color={PARTICLE_COLORS[0]}
+              angle={i * 28}
+              distance={Math.random() * 15 + 13}
             />
-          </>
-        )}
+          ))}
       </Background>
     </Wrapper>
   );
