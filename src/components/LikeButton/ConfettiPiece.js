@@ -1,15 +1,12 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import styled from 'styled-components';
 
-import { random, sample } from '../../utils';
+import { random, range, sample } from '../../utils';
 
 import Particle from '../Particle';
 
-const getRandomColor = () =>
-  sample(['#e53935', '#1e88e5', '#43a047', '#fdd835', '#fb8c00']);
-
-const getRandomSize = parentSize =>
-  random(parentSize * 0.15, parentSize * 0.225);
+const COLORS = ['#e53935', '#1e88e5', '#43a047', '#fdd835', '#fb8c00'];
 
 const ConfettiPiece = ({ parentSize, angle, distance }) => {
   const size = parentSize * 0.1;

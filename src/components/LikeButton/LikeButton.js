@@ -25,13 +25,23 @@ const LikeButton = ({ isLiked, numOfConfettiPieces = 1, size = 40 }) => {
         {isLiked && <PoppingCircle size={size} />}
 
         {/* Part III: update ConfettiPiece, add several more: */}
-        <ConfettiPiece parentSize={size} angle={33} distance={10} />
+        {isLiked && (
+          <>
+            <ConfettiPiece parentSize={size} angle={40} distance={25} />
+            <ConfettiPiece parentSize={size} angle={125} distance={25} />
+            <ConfettiPiece parentSize={size} angle={158} distance={25} />
+            <ConfettiPiece parentSize={size} angle={200} distance={25} />
+            <ConfettiPiece parentSize={size} angle={240} distance={25} />
+            <ConfettiPiece parentSize={size} angle={300} distance={25} />
+            <ConfettiPiece parentSize={size} angle={315} distance={25} />
+          </>
+        )}
       </Background>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled(UnstyledButton)`
   position: relative;
   display: flex;
   justify-content: center;

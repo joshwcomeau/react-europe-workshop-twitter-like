@@ -1,10 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-
-import UnstyledButton from '../UnstyledButton'
+import React from 'react';
+import styled from 'styled-components';
 
 const Action = ({ color, size, children, onClick }) => {
-  const [isHovered, setIsHovered] = React.useState(false)
+  const [isHovered, setIsHovered] = React.useState(false);
 
   return (
     <Wrapper
@@ -16,15 +14,15 @@ const Action = ({ color, size, children, onClick }) => {
       <BackgroundCircle style={{ backgroundColor: isHovered ? color : null }} />
       {children}
     </Wrapper>
-  )
-}
+  );
+};
 
-const Wrapper = styled(UnstyledButton)`
+const Wrapper = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 
 const BackgroundCircle = styled.div`
   position: absolute;
@@ -34,6 +32,6 @@ const BackgroundCircle = styled.div`
   bottom: 0;
   border-radius: 50%;
   opacity: 0.12;
-`
+`;
 
-export default Action
+export default Action;
