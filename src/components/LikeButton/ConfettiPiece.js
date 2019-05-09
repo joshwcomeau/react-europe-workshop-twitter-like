@@ -21,6 +21,10 @@ const ConfettiPiece = ({ parentSize, angle, distance, color }) => {
         startDistance={distance * 0.55}
         endDistance={distance}
       >
+        {/*
+        The main version of this component just uses the color passed by the
+        parent component:
+       */}
         <Circle
           style={{
             width: size,
@@ -28,9 +32,52 @@ const ConfettiPiece = ({ parentSize, angle, distance, color }) => {
             background: color,
           }}
         />
+
+        {/*
+          For fun, I added another stretch goal that changes the color of
+          each particle. In this case, the color isn't used, and instead it
+          picks a random keyframe to use.
+
+          Uncomment to use:
+        */}
+
+        {/* <Circle
+          keyframeId={sample(['warm', 'mid', 'cool'])}
+          style={{
+            width: size,
+            height: size,
+          }}
+        /> */}
       </Particle>
     </CenteredWithinParent>
   );
+};
+
+const warmKeyframe = keyframes`
+  0% { background: pink; }
+  50% { background: yellow; }
+  100% { background: pink; }
+`;
+const midKeyframe = keyframes`
+  0% { background: blue; }
+  50% { background: hotpink; }
+  100% { background: blue; }
+`;
+const coolKeyframe = keyframes`
+  0% { background: turquoise; }
+  50% { background: violet; }
+  100% { background: turquoise; }
+`;
+
+const getKeyframeForId = id => {
+  switch (id) {
+    case 'warm':
+      return warmKeyframe;
+    case 'mid':
+      return midKeyframe;
+    case 'cool':
+      return coolKeyframe;
+  }
 };
 
 const CenteredWithinParent = styled.div`
@@ -42,6 +89,8 @@ const CenteredWithinParent = styled.div`
 
 const Circle = styled.div`
   border-radius: 50%;
+  animation: ${props => getKeyframeForId(props.keyframeId)} 1000ms
+    ${props => Math.random() * 400}ms infinite;
 `;
 
 export default ConfettiPiece;
