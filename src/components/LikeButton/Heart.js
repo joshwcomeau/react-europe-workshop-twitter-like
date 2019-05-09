@@ -22,4 +22,10 @@ const Heart = ({ width, isToggled }) => (
   </Svg>
 );
 
+const Svg = styled.svg`
+  display: block;
+  backface-visibility: hidden;
+  fill: none;
+`;
+
 export default Heart;
