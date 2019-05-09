@@ -36,6 +36,7 @@ const LikeButton = ({ isLiked, numOfConfettiPieces = 12, size = 40 }) => {
               parentSize={size}
               angle={i * 28}
               distance={Math.random() * 15 + 13}
+              color={PARTICLE_COLORS[i % PARTICLE_COLORS.length]}
             />
           ))}
       </Background>

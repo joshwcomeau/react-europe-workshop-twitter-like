@@ -6,7 +6,7 @@ import { random, sample } from '../../utils';
 const Particle = ({ angle, startDistance, endDistance, children }) => {
   // const angle = React.useRef(random(0, Math.PI * 2 * 100) / 100);
   const angleInRads = (angle * Math.PI) / 180;
-  const delay = React.useRef(random(0, 450));
+  const delay = React.useRef(sample([0, 200]));
 
   const startX = Math.cos(angleInRads) * startDistance;
   const startY = Math.sin(angleInRads) * startDistance;

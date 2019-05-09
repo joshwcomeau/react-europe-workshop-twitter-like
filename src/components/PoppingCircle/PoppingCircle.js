@@ -40,7 +40,7 @@ const PoppingCircle = ({ size, color }) => {
         cy={20}
         fill="#E790F7"
         mask={`url(#popping-circle)`}
-        style={{ opacity: 0.75 }}
+        style={{ opacity: 0.9 }}
       />
     </Svg>
   );

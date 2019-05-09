@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import { random, range, sample } from '../../utils';
 
 import Particle from '../Particle';
 
 const ConfettiPiece = ({ parentSize, angle, distance, color }) => {
-  const size = parentSize * 0.1;
+  const size = parentSize * 0.25;
 
   // Early return to keep the Confetti from being distracting when
   // working on the springing heart and popping circle.
@@ -16,7 +16,11 @@ const ConfettiPiece = ({ parentSize, angle, distance, color }) => {
 
   return (
     <CenteredWithinParent>
-      <Particle angle={angle} distance={distance}>
+      <Particle
+        angle={angle}
+        startDistance={distance * 0.55}
+        endDistance={distance}
+      >
         <Circle
           style={{
             width: size,
