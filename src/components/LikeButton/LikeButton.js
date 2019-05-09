@@ -8,6 +8,8 @@ import ConfettiPiece from './ConfettiPiece';
 import ScaleIn from '../ScaleIn';
 import Heart from './Heart';
 
+const PARTICLE_COLORS = ['#e53935', '#1e88e5', '#43a047', '#fdd835', '#fb8c00'];
+
 const LikeButton = ({ isLiked, numOfConfettiPieces = 1, size = 40 }) => {
   const heartSize = size * 0.6;
 
@@ -27,13 +29,12 @@ const LikeButton = ({ isLiked, numOfConfettiPieces = 1, size = 40 }) => {
         {/* Part III: update ConfettiPiece, add several more: */}
         {isLiked && (
           <>
-            <ConfettiPiece parentSize={size} angle={40} distance={25} />
-            <ConfettiPiece parentSize={size} angle={125} distance={25} />
-            <ConfettiPiece parentSize={size} angle={158} distance={25} />
-            <ConfettiPiece parentSize={size} angle={200} distance={25} />
-            <ConfettiPiece parentSize={size} angle={240} distance={25} />
-            <ConfettiPiece parentSize={size} angle={300} distance={25} />
-            <ConfettiPiece parentSize={size} angle={315} distance={25} />
+            <ConfettiPiece
+              parentSize={size}
+              angle={40}
+              distance={25}
+              color={PARTICLE_COLORS[0]}
+            />
           </>
         )}
       </Background>
