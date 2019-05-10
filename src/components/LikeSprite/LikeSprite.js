@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import likeSpriteSrc from '../../assets/like-sprite.png';
+import likeSpriteSrc from '../../assets/like-sprite-transparent.png';
 
 // The image was produced at
 
@@ -31,7 +31,6 @@ const backgroundAnimation = keyframes`
 const Wrapper = styled.div`
   width: ${FRAME_SIZE}px;
   height: ${FRAME_SIZE}px;
-  background: white;
   overflow: hidden;
   margin: auto;
 `;
