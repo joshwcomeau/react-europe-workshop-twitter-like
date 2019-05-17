@@ -77,6 +77,8 @@ const getKeyframeForId = id => {
       return midKeyframe;
     case 'cool':
       return coolKeyframe;
+    default:
+      throw new Error('Unrecognized ID: ' + id);
   }
 };
 

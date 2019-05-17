@@ -1,7 +1,7 @@
 import React from 'react';
-import { useSpring, interpolate, animated } from 'react-spring';
+import { useSpring, animated } from 'react-spring';
 
-import { random, sample } from '../../utils';
+import { sample } from '../../utils';
 
 const Particle = ({ angle, startDistance, endDistance, children }) => {
   // const angle = React.useRef(random(0, Math.PI * 2 * 100) / 100);
@@ -15,10 +15,10 @@ const Particle = ({ angle, startDistance, endDistance, children }) => {
   const endY = Math.sin(angleInRads) * endDistance;
 
   const positionSpring = useSpring({
-    x: endX,
-    y: endY,
-    scale: 0,
-    from: { x: startX, y: startY, scale: 1 },
+    transform: `translate(${endX}px, ${endY}px) scale(0)`,
+    from: {
+      transform: `translate(${startX}px, ${startY}px) scale(1)`,
+    },
     delay: delay.current,
     config: {
       tension: 120,
@@ -40,10 +40,7 @@ const Particle = ({ angle, startDistance, endDistance, children }) => {
     <animated.div
       style={{
         ...opacitySpring,
-        transform: interpolate(
-          [positionSpring.x, positionSpring.y, positionSpring.scale],
-          (x, y, scale) => `translate(${x}px, ${y}px) scale(${scale}, ${scale})`
-        ),
+        ...positionSpring,
       }}
     >
       {children}
