@@ -4,7 +4,6 @@ import { useSpring, animated } from 'react-spring';
 import { sample } from '../../utils';
 
 const Particle = ({ angle, startDistance, endDistance, children }) => {
-  // const angle = React.useRef(random(0, Math.PI * 2 * 100) / 100);
   const angleInRads = (angle * Math.PI) / 180;
   const delay = React.useRef(sample([0, 200]));
 
