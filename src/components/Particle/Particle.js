@@ -40,8 +40,6 @@ const Particle = ({ angle, startDistance, endDistance, children }) => {
     },
   });
 
-  console.log(opacitySpring);
-
   return (
     <animated.div
       style={{
