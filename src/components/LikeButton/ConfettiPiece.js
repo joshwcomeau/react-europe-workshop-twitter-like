@@ -9,11 +9,6 @@ import Particle from '../Particle';
 const ConfettiPiece = ({ parentSize, angle, distance, color }) => {
   const size = parentSize * 0.25;
 
-  // Early return to keep the Confetti from being distracting when
-  // working on the springing heart and popping circle.
-  // REMOVE ME once you get to the particles section!!
-  return null;
-
   return (
     <CenteredWithinParent>
       <Particle

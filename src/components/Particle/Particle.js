@@ -3,8 +3,13 @@ import { useSpring, animated } from 'react-spring';
 
 import { sample } from '../../utils';
 
+// This helper function can convert your angle to radians, which is the format
+// that Math.sin and Math.cos expect.
+const convertDegreesToRadians = angle => (angle * Math.PI) / 180;
+
 const Particle = ({ angle, startDistance, endDistance, children }) => {
-  const angleInRads = (angle * Math.PI) / 180;
+  const angleInRads = convertDegreesToRadians(angle);
+
   const delay = React.useRef(sample([0, 200]));
 
   const startX = Math.cos(angleInRads) * startDistance;
@@ -34,6 +39,8 @@ const Particle = ({ angle, startDistance, endDistance, children }) => {
       friction: 20,
     },
   });
+
+  console.log(opacitySpring);
 
   return (
     <animated.div
